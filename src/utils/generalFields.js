@@ -17,16 +17,7 @@ export const generalFiled = {
         rePassword: Joi.string().valid(Joi.ref("password")),
         id: Joi.string().custom(validationObjectId),
 
-        file: Joi.object({
-         size: Joi.number().positive().required(),
-            path: Joi.string().required(),
-            filename: Joi.string().required(),
-            destination: Joi.string().required(),
-            mimetype: Joi.string().required(),
-            encoding: Joi.string().required(),
-            originalname: Joi.string().required(),
-            fieldname: Joi.string().required()}),
-
+        
             headers: Joi.object({
                 'cache-control': Joi.string(),
                 'postman-token': Joi.string(),
@@ -41,8 +32,4 @@ export const generalFiled = {
             }),   
     };
         
-    export const headers = {
-       
-    
-    }
     

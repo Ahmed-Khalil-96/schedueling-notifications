@@ -33,6 +33,7 @@ const userSchema = new Schema({
         type:[String],
         required:[true,"Phone number is required"],
         trim:true,
+        unique:true
     },
    
     gender:{
@@ -50,12 +51,7 @@ const userSchema = new Schema({
     loggedIn:{
         type:Boolean,
         default:false
-    },
-    role:{
-        type:String,
-        enum:["admin","user","superAdmin"],
-        default:"user"
-    },
+    }
 
 },
 {timestamps:true,

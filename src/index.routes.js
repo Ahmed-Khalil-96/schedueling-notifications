@@ -1,10 +1,11 @@
-import productRouter from '../src/modules/products/product.routes.js'
-import cartRouter from '../src/modules/cart/cart.routes.js'
+
 import authRouter from '../src/modules/Authentication/auth.routes.js'
+import notificationRouter from './modules/notifications/notification.routes.js'
 
 
 
 
 export{
-    productRouter,cartRouter,authRouter
+    authRouter,notificationRouter
+   
 }

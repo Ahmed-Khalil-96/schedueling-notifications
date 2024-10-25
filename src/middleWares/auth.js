@@ -3,7 +3,7 @@ import { AppError } from "../utils/errorClass.js";
 import { asyncHandler } from "../utils/errorHandling.js";
 import userModel from "../../dataBase/Models/user/user.model.js";
 
-const auth = (roles = []) => {
+const auth = () => {
     return asyncHandler(async (req, res, next) => {
         // Extract token from headers
         const { token } = req.headers;
@@ -38,11 +38,6 @@ const auth = (roles = []) => {
             return next(new AppError('Invalid token', 400));
         }
 
-        // Check if the user's role is authorized
-        if (roles.length && !roles.includes(user.role)) {
-            return next(new AppError('You are not authorized to perform this action', 403));
-        }
-        
         // Attach user to the request object
         req.user = user;
 

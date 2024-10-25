@@ -1,4 +1,5 @@
 import userModel from "../../../dataBase/Models/user/user.model.js";
+import notificationModel from '../../../dataBase/Models/notification/not.model.js';
 import { AppError } from "../../utils/errorClass.js"
 import { asyncHandler } from "../../utils/errorHandling.js"
 import bcrypt from "bcrypt"
@@ -8,7 +9,7 @@ import jwt from "jsonwebtoken";
 
 // ==============================signUp====================================
 export const signUp = asyncHandler(async(req,res, next)=>{
-    const {firstName, lastName , email, password, gender, phone, age }=req.body
+    const {firstName, lastName , email, password, gender, phone, age ,scheduledTime}=req.body
 
     const userExist = await userModel.findOne({email:email.toLowerCase()})
     if(userExist){
