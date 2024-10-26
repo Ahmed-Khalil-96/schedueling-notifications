@@ -66,45 +66,52 @@ const job = new CronJob(
   '* * * * * *', 
   async function () {
     const currentTime = moment.utc().toDate();
-    const notifications = await notificationModel.find({ status: "pending" });
 
-    for (const element of notifications) {
-      const { fcmToken, title, body, scheduledTime, repeatType, interval, daysOfWeek, endDate, timeZone } = element;
+    const batchSize = 100;
+    let notifications
+    
+    do {
+      notifications = await notificationModel.find({ status: 'pending' })
+        .limit(batchSize);
 
-      // Validate timeZone
-      if (!moment.tz.names().includes(timeZone)) {
-        console.error(`Invalid time zone: ${timeZone}`);
-        continue; // Skip this notification
-      }
+      for (const element of notifications) {
+        const { fcmToken, title, body, scheduledTime, repeatType, interval, endDate, timeZone } = element;
 
-      // Convert scheduled time to UTC
-      let nextScheduledTime = moment.tz(scheduledTime, timeZone).utc().toDate();
+        // Validate the timeZone
+        if (!moment.tz.names().includes(timeZone)) {
+          console.error(`Invalid time zone: ${timeZone}`);
+          continue; // Skip
+        }
 
-      // Check endDate
-      if (endDate && nextScheduledTime > endDate) {
-        await notificationModel.findByIdAndUpdate(element._id, { status: "sent" });
-        continue;
-      }
+        // Convert scheduled time to UTC
+        const nextScheduledTime = moment.tz(scheduledTime, timeZone).utc().toDate();
 
-      // Check if the notification should be sent
-      if (nextScheduledTime <= currentTime) {
-        try {
-          // Send the notification
-          await sendNotification(title, body, fcmToken);
-          
-          // Update notification status
-          if (repeatType === "none") {
-            await notificationModel.findByIdAndUpdate(element._id, { status: "sent" });
-          } else {
-            // Calculate next occurrence
-            nextScheduledTime = nextRepeat(repeatType, interval, scheduledTime, timeZone);
-            await notificationModel.findByIdAndUpdate(element._id, { scheduledTime: nextScheduledTime });
+        // Cehck the end Date
+        if (endDate && nextScheduledTime > endDate) {
+          await notificationModel.findByIdAndUpdate(element._id, { status: 'sent' });
+          continue;
+        }
+
+        // Check if the notification should be sent
+        if (nextScheduledTime <= currentTime) {
+          try {
+            // Sending  notification with the firebase
+            await sendNotification(title, body, fcmToken);
+            
+            // Update notification status
+            if (repeatType === 'none') {
+              await notificationModel.findByIdAndUpdate(element._id, { status: 'sent' });
+            } else {
+              // Calculate next occurrence
+              const nextTime = nextRepeat(repeatType, interval, scheduledTime, timeZone);
+              await notificationModel.findByIdAndUpdate(element._id, { scheduledTime: nextTime });
+            }
+          } catch (error) {
+            console.error(`Error sending notification: ${error.message}`);
           }
-        } catch (error) {
-          console.error(`Error sending notification: ${error.message}`);
         }
       }
-    }
+    } while (notifications.length === batchSize);
   },
   null,
   true

@@ -14,7 +14,8 @@ const notificationSchema=new Schema({
     },
     scheduledTime:{
         type:Date,
-        required:true
+        required:true,
+        index:true
     },
     fcmToken:{
         type:String,
@@ -22,26 +23,30 @@ const notificationSchema=new Schema({
     },
     timeZone:{
         type:String,
-        required:true
+        required:true,
+        index:true
     },
     status:{
         type:String,
         enum:["pending","sent"],
-        default:"pending"
+        default:"pending",
+        index:true
     },
     repeatType: {
         type: String,
         enum: ["none", "daily", "weekly", "monthly", "custom"], 
-        default: "none"
+        default: "none",
+        index: true
     },
     interval: { 
         type: Number,
-        default: null
+        default: null,
+        index: true
     },
-    daysOfWeek: { 
-        type: [Number], 
-        default: [] 
-    },
+    // daysOfWeek: { 
+    //     type: [Number], 
+    //     default: [] 
+    // },
     endDate: { 
         type: Date 
     }
