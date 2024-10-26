@@ -1,5 +1,4 @@
-import userModel from "../../../dataBase/Models/user/user.model.js";
-import notificationModel from '../../../dataBase/Models/notification/not.model.js';
+import userModel from '../../../dataBase/Models/user/user.Model.js';
 import { AppError } from "../../utils/errorClass.js"
 import { asyncHandler } from "../../utils/errorHandling.js"
 import bcrypt from "bcrypt"

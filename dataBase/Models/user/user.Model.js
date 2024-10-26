@@ -47,7 +47,11 @@ const userSchema = new Schema({
         type:Number,
         required:[true,"Age is required"],        
     },
-    
+    country:{
+        type:String,
+        required:[true,"Country is required"],
+        
+    },
     loggedIn:{
         type:Boolean,
         default:false
