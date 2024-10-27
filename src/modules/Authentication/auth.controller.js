@@ -21,10 +21,10 @@ export const signUp = asyncHandler(async(req,res, next)=>{
     await user.save()
 
     // delete from database if there were any errors
-    // req.data={
-    //     model:userModel,
-    //     id:user._id
-    // }
+    req.data={
+        model:userModel,
+        id:user._id
+    }
     res.status(201).json({message: "User created successfully", user})
 })
 
