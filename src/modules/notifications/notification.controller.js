@@ -86,7 +86,7 @@ const job = new CronJob(
         // Convert scheduled time to UTC
         const nextScheduledTime = moment.tz(scheduledTime, timeZone).utc().toDate();
 
-        // Cehck the end Date
+        // cehck the end Date
         if (endDate && nextScheduledTime > endDate) {
           await notificationModel.findByIdAndUpdate(element._id, { status: 'sent' });
           continue;
