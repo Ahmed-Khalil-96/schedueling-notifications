@@ -95,7 +95,7 @@ The `nextRepeat` function calculates the next occurrence based on the repeat typ
 4. Start the server: npm start
 
 ### 📞 Contact
-For inquiries or contributions, please contact Ahmed Khalil.
+For inquiries or contributions, please contact Ahmed Khalil at ahmed.elabassiry96@gmail.com.
 
 
 ### Changes Made:
