@@ -92,9 +92,7 @@ The `nextRepeat` function calculates the next occurrence based on the repeat typ
 3. Set up your environment variables:
    Create a .env file in the root directory and add your configuration settings.
 
-4. Start the server:
-  ```bash
-   npm start
+4. Start the server: npm start
 
 5. 📞 Contact
 For inquiries or contributions, please contact Ahmed Khalil.
