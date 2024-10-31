@@ -24,33 +24,7 @@ The **Scheduled Notifications Service** automates the process of sending notific
 
 ## 📋 API Endpoints
 
-### 1. **Create Notification**
-   - **Endpoint**: `/api/notifications`
-   - **Method**: POST
-   - **Body Parameters**:
-     - `title`: Title of the notification
-     - `body`: Content of the notification
-     - `fcmToken`: Device token for Firebase Cloud Messaging
-     - `scheduledTime`: Date and time to send the notification
-     - `repeatType`: Recurrence type (`none`, `daily`, `weekly`, `monthly`, `custom`)
-     - `interval`: (Optional) Number of days for custom recurrence
-     - `daysOfWeek`: (Optional) Days of the week for weekly recurrence
-     - `endDate`: (Optional) Date after which the notification should stop
-     - `timeZone`: User’s time zone for accurate scheduling
-
-### 2. **Update Notification**
-   - **Endpoint**: `/api/notifications/:id`
-   - **Method**: PUT
-   - **Body Parameters**: Same as **Create Notification**
-
-### 3. **Delete Notification**
-   - **Endpoint**: `/api/notifications/:id`
-   - **Method**: DELETE
-
-### 4. **Get All Notifications**
-   - **Endpoint**: `/api/notifications`
-   - **Method**: GET
-   - **Description**: Retrieves all notifications with their status and scheduling details.
+### **for more detailed and example requests API documentation please visit: https://documenter.getpostman.com/view/33627575/2sAY4sijWQ
 
 ## 🔄 Notification Scheduling Logic
 
