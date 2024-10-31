@@ -96,7 +96,7 @@ The `nextRepeat` function calculates the next occurrence based on the repeat typ
   ```bash
    npm start
 
-5. ### 📞 Contact
+5. 📞 Contact
 For inquiries or contributions, please contact Ahmed Khalil.
 
 
