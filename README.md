@@ -86,13 +86,13 @@ The `nextRepeat` function calculates the next occurrence based on the repeat typ
    cd scheduled-notifications-service
 
 2. Install dependencies:
-   npm install
+   ``` npm install
 
 3. Set up your environment variables:
-   Create a .env file in the root directory and add your configuration settings.
+  ``` Create a .env file in the root directory and add your configuration settings.
 
 4. Start the server:
-   npm start
+  ``` npm start
 
 ### 📞 Contact
 For inquiries or contributions, please contact Ahmed Khalil.
